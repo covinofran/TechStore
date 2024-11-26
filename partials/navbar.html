@@ -1,0 +1,90 @@
+<nav class="bg-white shadow sticky top-0 z-50">
+  <div class="container mx-auto px-4 flex items-center justify-between py-4">
+    <!-- Logo -->
+    <a href="index.html" class="text-black font-bold text-xl">TechStore</a>
+
+    <!-- Botón para colapsar menú en móviles -->
+    <button
+      id="menu-toggle"
+      class="block lg:hidden text-gray-600 hover:text-black focus:outline-none"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- Links del menú -->
+    <div id="menu" class="hidden lg:flex lg:items-center space-x-6">
+      <a
+        href="index.html#products-section"
+        class="text-gray-700 hover:text-black font-medium"
+        >Productos</a
+      >
+      <a
+        href="index.html#categories-section"
+        class="text-gray-700 hover:text-black font-medium"
+        >Categorías</a
+      >
+      <a
+        href="index.html#offers-section"
+        class="text-gray-700 hover:text-black font-medium"
+        >Promociones</a
+      >
+
+      <!-- Botón del carrito -->
+      <button
+        id="cart-button"
+        class="relative flex items-center text-gray-600 hover:text-black focus:outline-none"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#cartOffcanvas"
+        aria-controls="cartOffcanvas"
+      >
+        <i class="bi bi-cart-fill text-xl"></i>
+        <span
+          id="cart-count"
+          class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+        >
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú para móviles -->
+  <div id="mobile-menu" class="lg:hidden hidden px-4 pb-4 space-y-2">
+    <a
+      href="index.html#products-section"
+      class="block text-gray-700 hover:text-black font-medium"
+      >Productos</a
+    >
+    <a
+      href="index.html#categories-section"
+      class="block text-gray-700 hover:text-black font-medium"
+      >Categorías</a
+    >
+    <a
+      href="index.html#offers-section"
+      class="block text-gray-700 hover:text-black font-medium"
+      >Promociones</a
+    >
+  </div>
+</nav>
+
+<script>
+  // Lógica para el menú en móviles
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    const mobileMenu = document.getElementById("mobile-menu");
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>

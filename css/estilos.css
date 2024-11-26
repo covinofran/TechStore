@@ -1,0 +1,114 @@
+/* Estilos únicos o específicos que no cubren Tailwind CSS */
+
+/* Botones de la Hero Section */
+header .btn {
+  font-size: 1.2rem;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  transition: transform 0.2s ease;
+}
+
+header .btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Tarjetas de Productos */
+.card {
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer a {
+  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #3b82f6;
+}
+
+/* Ajustes de botones */
+button {
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Estilo para imágenes */
+img.object-contain {
+  width: 100%;
+  height: 12rem; /* Fija la altura */
+  object-fit: contain; /* Contiene la imagen respetando proporciones */
+  background-color: #ffffff; /* Fondo blanco para coincidir con la imagen */
+  border-radius: 0.5rem; /* Bordes redondeados */
+  padding: 0.5rem; /* Espaciado interno */
+}
+
+/* General Offcanvas Styles */
+.offcanvas-end {
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header del carrito */
+.offcanvas-header {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Productos en el carrito */
+#cart-items > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+#cart-items > div:last-child {
+  border-bottom: none;
+}
+
+/* Imagen del producto */
+#cart-items img {
+  max-width: 50px;
+  height: auto;
+  margin-right: 15px;
+}
+
+/* Nombre y detalles del producto */
+.cart-item-details {
+  flex-grow: 1;
+  color: #333;
+}
+.cart-item-details h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+.cart-item-details small {
+  display: block;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Precio y cantidad */
+.cart-item-actions {
+  text-align: right;
+  color: #333;
+}
+.cart-item-actions p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.cart-item-actions input {
+  width: 60px;
+  margin-top: 5px;
+  text-align: center;
+}

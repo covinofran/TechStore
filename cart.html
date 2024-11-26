@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras - TechStore</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Iconos -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="css/estilos.css" />
+
+    <!-- Estilos internos -->
+    <style>
+      /* Transiciones suaves para el formulario de pago */
+      #checkout-form {
+        display: none;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease-in-out;
+      }
+      #checkout-form.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Ajustes para el botón principal */
+      .btn-primary-custom {
+        background-color: #4f46e5;
+        color: #fff;
+        border: none;
+      }
+      .btn-primary-custom:hover {
+        background-color: #4338ca;
+      }
+      .btn-primary-custom:focus {
+        outline: none;
+        box-shadow: 0 0 4px 2px rgba(79, 70, 229, 0.5);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Carrito de Compras -->
+    <main class="py-12">
+      <div class="container mx-auto">
+        <!-- Título -->
+        <h2 class="text-4xl font-extrabold text-center mb-8 text-gray-900">
+          Tu Carrito de Compras
+        </h2>
+
+        <!-- Productos del Carrito -->
+        <div
+          id="cart-items"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow"
+        >
+          <!-- Los productos serán cargados dinámicamente -->
+          <p class="text-center text-gray-500">Cargando productos...</p>
+        </div>
+
+        <!-- Total del Carrito -->
+        <div class="mt-8 text-center">
+          <p class="text-2xl font-semibold text-gray-900" id="cart-total">
+            Total: $0.00
+          </p>
+        </div>
+
+        <!-- Botón para Proceder al Pago -->
+        <div class="mt-6 text-center">
+          <button
+            id="toggle-checkout-form"
+            class="btn btn-dark py-3 px-6 fw-bold w-full rounded-lg"
+          >
+            Proceder al Pago
+          </button>
+        </div>
+
+        <!-- Formulario de Finalización de Compra -->
+        <div id="checkout-form" class="mt-8">
+          <div class="card shadow-lg border-0">
+            <div class="card-body">
+              <h3 class="card-title text-center fw-bold text-2xl mb-6">
+                Finalizar Compra
+              </h3>
+              <form id="finalize-purchase-form" novalidate>
+                <div class="mb-4">
+                  <label for="name" class="form-label fw-semibold"
+                    >Nombre Completo</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control rounded-lg"
+                    placeholder="Ingresa tu nombre"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Por favor, ingresa tu nombre.
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="email" class="form-label fw-semibold"
+                    >Correo Electrónico</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control rounded-lg"
+                    placeholder="Ingresa tu correo"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Por favor, ingresa un correo válido.
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="address" class="form-label fw-semibold"
+                    >Dirección</label
+                  >
+                  <textarea
+                    id="address"
+                    class="form-control rounded-lg"
+                    rows="3"
+                    placeholder="Ingresa tu dirección"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa tu dirección.
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-dark w-100 fw-bold py-3"
+                >
+                  Confirmar Compra
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          await loadComponents();
+          renderCart();
+          updateNavbarCart();
+
+          const toggleButton = document.getElementById("toggle-checkout-form");
+          const checkoutForm = document.getElementById("checkout-form");
+
+          if (toggleButton && checkoutForm) {
+            toggleButton.addEventListener("click", () => {
+              checkoutForm.classList.toggle("active");
+            });
+          }
+
+          const form = document.getElementById("finalize-purchase-form");
+          if (form) {
+            form.addEventListener("submit", (event) => {
+              event.preventDefault();
+              if (form.checkValidity()) {
+                alert("Compra confirmada. ¡Gracias por tu compra!");
+                form.reset();
+                clearCart();
+                checkoutForm.classList.remove("active");
+                renderCart();
+                updateNavbarCart();
+              } else {
+                form.classList.add("was-validated");
+              }
+            });
+          }
+        } catch (error) {
+          console.error("Error durante la inicialización:", error);
+        }
+      });
+    </script>
+
+    <script src="js/loadComponents.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
