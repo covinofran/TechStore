@@ -86,13 +86,32 @@
 </nav>
 
 <script>
-  // Menú móvil toggle
   document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+    // Abrir/cerrar menú móvil al hacer clic en el botón de menú
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevenir el cierre inmediato al hacer clic
+      mobileMenu.classList.toggle("hidden"); // Alternar visibilidad del menú
+    });
+
+    // Cerrar menú móvil si se hace clic fuera
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileMenu.contains(event.target) &&
+        !menuToggle.contains(event.target) &&
+        !mobileMenu.classList.contains("hidden") // Solo cerrar si está visible
+      ) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+
+    // Cerrar menú móvil al hacer clic en un enlace dentro del menú
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden"); // Cerrar menú
+      });
     });
   });
 </script>
