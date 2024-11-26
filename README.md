@@ -27,21 +27,26 @@ Una plataforma de comercio electrónico moderna para explorar, comparar y adquir
 
 ```bash
 TechStore/
-├── assets/                # Archivos multimedia (imágenes, íconos)
-├── css/                   # Estilos personalizados
-│   └── estilos.css
-├── js/                    # Lógica de la aplicación
-│   ├── auth.js            # Manejo de autenticación
-│   ├── cart.js            # Gestión del carrito
-│   ├── loadComponents.js  # Carga de componentes dinámicos (navbar, footer, offcanvas)
-│   └── products.js        # Gestión de productos y secciones
-├── partials/              # Componentes reutilizables
-│   ├── navbar.html        # Barra de navegación
-│   ├── footer.html        # Pie de página
+├── assets/               # Archivos multimedia
+│   └── images/           # Imágenes utilizadas en el proyecto
+│       └── hero-bg.webp  # Imagen del fondo hero
+├── css/                  # Estilos personalizados
+│   └── estilos.css       # Hoja de estilos CSS principal
+├── js/                   # Scripts JavaScript
+│   ├── auth.js           # Manejo de autenticación
+│   ├── cart.js           # Gestión del carrito
+│   ├── loadComponents.js # Carga de componentes dinámicos
+│   ├── product.js        # Detalles individuales de producto
+│   └── products.js       # Gestión de productos y secciones
+├── partials/             # Componentes reutilizables
+│   ├── footer.html       # Pie de página
+│   ├── navbar.html       # Barra de navegación
 │   └── offcanvas-cart.html # Carrito flotante
-├── index.html             # Página principal
-├── cart.html              # Página del carrito
-└── README.md              # Documentación del proyecto
+├── cart.html             # Página del carrito
+├── contact.html          # Página de contacto
+├── index.html            # Página principal
+├── product.html          # Página de detalles del producto
+└── README.md             # Documentación del proyecto
 ```
 
 ---
