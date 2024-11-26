@@ -37,18 +37,18 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* Ajustes para el botón principal */
-      .btn-primary-custom {
-        background-color: #4f46e5;
-        color: #fff;
-        border: none;
+
+      /* Estilo para el total del carrito */
+      .cart-total {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #000; /* Negro puro */
       }
-      .btn-primary-custom:hover {
-        background-color: #4338ca;
-      }
-      .btn-primary-custom:focus {
-        outline: none;
-        box-shadow: 0 0 4px 2px rgba(79, 70, 229, 0.5);
+
+      /* Formulario personalizado */
+      .form-control:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
       }
     </style>
   </head>
@@ -70,13 +70,12 @@
           id="cart-items"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow"
         >
-          <!-- Los productos serán cargados dinámicamente -->
           <p class="text-center text-gray-500">Cargando productos...</p>
         </div>
 
         <!-- Total del Carrito -->
         <div class="mt-8 text-center">
-          <p class="text-2xl font-semibold text-gray-900" id="cart-total">
+          <p class="cart-total" id="cart-total">
             Total: $0.00
           </p>
         </div>
@@ -99,40 +98,42 @@
                 Finalizar Compra
               </h3>
               <form id="finalize-purchase-form" novalidate>
-                <div class="mb-4">
-                  <label for="name" class="form-label fw-semibold"
-                    >Nombre Completo</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control rounded-lg"
-                    placeholder="Ingresa tu nombre"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Por favor, ingresa tu nombre.
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label fw-semibold">
+                      Nombre Completo
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      class="form-control rounded-lg"
+                      placeholder="Ingresa tu nombre"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Por favor, ingresa tu nombre.
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label fw-semibold">
+                      Correo Electrónico
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      class="form-control rounded-lg"
+                      placeholder="Ingresa tu correo"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Por favor, ingresa un correo válido.
+                    </div>
                   </div>
                 </div>
-                <div class="mb-4">
-                  <label for="email" class="form-label fw-semibold"
-                    >Correo Electrónico</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    class="form-control rounded-lg"
-                    placeholder="Ingresa tu correo"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Por favor, ingresa un correo válido.
-                  </div>
-                </div>
-                <div class="mb-4">
-                  <label for="address" class="form-label fw-semibold"
-                    >Dirección</label
-                  >
+                <div class="mt-4">
+                  <label for="address" class="form-label fw-semibold">
+                    Dirección
+                  </label>
                   <textarea
                     id="address"
                     class="form-control rounded-lg"
@@ -144,9 +145,27 @@
                     Por favor, ingresa tu dirección.
                   </div>
                 </div>
+                <div class="mt-4">
+                  <label for="payment-method" class="form-label fw-semibold">
+                    Método de Pago
+                  </label>
+                  <select
+                    id="payment-method"
+                    class="form-select rounded-lg"
+                    required
+                  >
+                    <option value="">Selecciona un método</option>
+                    <option value="credit">Tarjeta de Crédito</option>
+                    <option value="debit">Tarjeta de Débito</option>
+                    <option value="paypal">PayPal</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Por favor, selecciona un método de pago.
+                  </div>
+                </div>
                 <button
                   type="submit"
-                  class="btn btn-dark w-100 fw-bold py-3"
+                  class="btn btn-dark w-100 fw-bold py-3 mt-4"
                 >
                   Confirmar Compra
                 </button>
