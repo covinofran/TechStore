@@ -1,10 +1,8 @@
-// js/product.js
-
 // Obtener el ID del producto desde la URL
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-// Verificar que el ID esté presente
+// Verificar que el ID exista
 if (!productId) {
   document.getElementById("product-details").innerHTML = `
     <div class="alert alert-danger text-center">
@@ -15,10 +13,10 @@ if (!productId) {
   // URL base de la API para obtener detalles del producto
   const API_URL = `https://api.mercadolibre.com/items/${productId}`;
 
-  // Elemento donde se cargarán los detalles del producto
+  // Elemento donde se cargaran los detalles del producto
   const productDetails = document.getElementById("product-details");
 
-  // Función para cargar los detalles del producto
+  // Cargar los detalles del producto
   async function fetchProductDetails() {
     try {
       const response = await fetch(API_URL);
@@ -26,7 +24,7 @@ if (!productId) {
         throw new Error(`Error al obtener el producto: ${response.status}`);
       const product = await response.json();
 
-      // Crear contenido dinámico
+      // Crear contenido dinamico
       const productHTML = `
   <div class="row">
     <!-- Imagen del producto -->
@@ -79,6 +77,6 @@ if (!productId) {
     }
   }
 
-  // Cargar los detalles al cargar la página
+  // Cargar los detalles al cargar la pagina
   document.addEventListener("DOMContentLoaded", fetchProductDetails);
 }

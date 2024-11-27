@@ -13,6 +13,7 @@ let allProducts = [];
 let productsDisplayed = 0;
 let offersDisplayed = 0;
 let filteredProducts = null; // Se inicializa en null para indicar que no hay filtro activo
+
 // Función para obtener imagen de alta calidad
 function getHighQualityImage(thumbnail) {
   return thumbnail.includes("I.jpg")
@@ -20,7 +21,7 @@ function getHighQualityImage(thumbnail) {
     : thumbnail;
 }
 
-// Función principal para cargar productos desde la API
+// Cargar productos desde la API
 async function fetchProducts() {
   try {
     const response = await fetch(API_URL);
@@ -46,7 +47,7 @@ async function fetchProducts() {
   }
 }
 
-// Función para mostrar productos generales
+// Mostrar productos generales
 function displayProducts(limit) {
   const productsToShow = (filteredProducts || allProducts).slice(
     productsDisplayed,
@@ -81,7 +82,7 @@ function displayProducts(limit) {
 
   productsDisplayed += limit;
 
-  // Actualizar botón de "Ver más"
+  // Actualizar botón de "Ver mas"
   const loadMoreContainer = document.getElementById("load-more-container");
   const currentProducts = filteredProducts || allProducts;
   if (productsDisplayed < currentProducts.length) {
@@ -92,11 +93,11 @@ function displayProducts(limit) {
             </button>
         `;
   } else {
-    loadMoreContainer.innerHTML = ""; // Ocultar el botón si no hay más productos
+    loadMoreContainer.innerHTML = ""; // Ocultar el boton si no hay más productos
   }
 }
 
-// Función para mostrar productos en oferta
+// Mostrar productos en oferta
 function displayOffers(limit) {
   const offersToShow = allProducts.slice(
     offersDisplayed,
@@ -141,7 +142,7 @@ function displayOffers(limit) {
 
   offersDisplayed += limit;
 
-  // Actualizar botón de "Ver más"
+  // Actualizar botón de "Ver mas"
   const loadMoreOffersContainer = document.getElementById(
     "load-more-offers-container"
   );
@@ -153,14 +154,14 @@ function displayOffers(limit) {
             </button>
         `;
   } else {
-    loadMoreOffersContainer.innerHTML = ""; // Ocultar el botón si no hay más productos
+    loadMoreOffersContainer.innerHTML = ""; // Ocultar el boton si no hay más productos
   }
 }
 
-// Mapear nombres de categorías para evitar múltiples solicitudes
+// Mapear nombres de categorías para evitar multiples solicitudes
 const categoryNameCache = new Map();
 
-// Función para obtener el nombre de la categoría desde la API
+// Obtener el nombre de la categoría desde la API
 async function getCategoryName(categoryId) {
   if (categoryNameCache.has(categoryId)) {
     return categoryNameCache.get(categoryId);
@@ -185,7 +186,7 @@ async function getCategoryName(categoryId) {
   }
 }
 
-// Función para generar filtros por categorías
+// Generar filtros por categorias
 async function generateCategoryFilters(products) {
   const categoriesContainer = document.getElementById("categories-container");
   if (!categoriesContainer) {
@@ -195,7 +196,7 @@ async function generateCategoryFilters(products) {
 
   const categories = new Map();
 
-  // Recolectar categorías únicas
+  // Recolectar categorias unicas
   products.forEach((product) => {
     if (product.category_id && !categories.has(product.category_id)) {
       categories.set(product.category_id, null);
@@ -213,7 +214,7 @@ async function generateCategoryFilters(products) {
 `;
   categoriesContainer.insertAdjacentHTML("beforeend", allButton);
 
-  // Obtener nombres de categorías en paralelo
+  // Obtener nombres de categorias en paralelo
   const categoryPromises = Array.from(categories.keys()).map(
     async (categoryId) => {
       const categoryName = await getCategoryName(categoryId);
@@ -233,15 +234,15 @@ async function generateCategoryFilters(products) {
   categoriesContainer.innerHTML += buttons.join("");
 }
 
-// Función para limpiar el filtro de categoría
+// Limpiar el filtro de categoría
 function clearCategoryFilter() {
   filteredProducts = null; // Restablece la variable global
   productsDisplayed = 0; // Reinicia el contador de productos mostrados
-  productsGrid.innerHTML = ""; // Limpia la cuadrícula
+  productsGrid.innerHTML = ""; // Limpia la cuadricula
   displayProducts(6); // Muestra productos generales
 }
 
-// Función para filtrar productos por categoría
+// Filtrar productos por categoría
 function filterProductsByCategory(categoryId) {
   const productsGrid = document.getElementById("products-grid");
   if (!productsGrid) {
@@ -251,11 +252,11 @@ function filterProductsByCategory(categoryId) {
 
   // Actualiza los productos filtrados
   filteredProducts = allProducts.filter(
-    (product) => String(product.category_id) === String(categoryId) // Comparación robusta
+    (product) => String(product.category_id) === String(categoryId) // Comparacion robusta
   );
 
   productsDisplayed = 0; // Reinicia el contador de productos mostrados
-  productsGrid.innerHTML = ""; // Limpia la cuadrícula
+  productsGrid.innerHTML = ""; // Limpia la cuadricula
 
   if (filteredProducts.length === 0) {
     console.warn(
@@ -274,12 +275,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Validar y cargar productos
     if (typeof fetchProducts === "function") {
-      await fetchProducts(); // Asegúrate de que los productos se carguen
+      await fetchProducts();
     } else {
       console.error("La función fetchProducts no está definida.");
     }
 
-    // Configurar el botón de "Cargar más productos"
+    // Configura el boton de "Cargar mas productos"
     const loadMoreProductsButton = document.getElementById(
       "load-more-products-button"
     );
@@ -295,7 +296,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.warn("No se encontró el botón de 'Cargar más productos'.");
     }
 
-    // Configurar el botón de "Cargar más ofertas"
+    // Configura el boton de "Cargar mas ofertas"
     const loadMoreOffersButton = document.getElementById(
       "load-more-offers-button"
     );

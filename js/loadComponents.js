@@ -16,7 +16,7 @@ async function loadComponents() {
     const offcanvasHTML = await offcanvasResponse.text();
     document.body.insertAdjacentHTML("beforeend", offcanvasHTML);
 
-    // Renderizar carrito después de cargar el HTML del offcanvas
+    // Renderizar carrito despues de cargar el HTML del offcanvas
     renderCart();
   } catch (err) {
     console.error("Error al cargar los componentes:", err);
@@ -24,5 +24,5 @@ async function loadComponents() {
 }
 
 
-// Inicializar cuando el DOM esté completamente cargado
+// Inicializar cuando el DOM este completamente cargado
 document.addEventListener("DOMContentLoaded", loadComponents);

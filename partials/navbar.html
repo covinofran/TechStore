@@ -3,7 +3,7 @@
     <!-- Logo -->
     <a href="index.html" class="text-black font-bold text-xl">TechStore</a>
 
-    <!-- Botón para colapsar menú en móviles -->
+    <!-- Boton para colapsar menu mobile -->
     <button
       id="menu-toggle"
       class="lg:hidden text-gray-600 hover:text-black focus:outline-none"
@@ -25,7 +25,7 @@
       </svg>
     </button>
 
-    <!-- Menú para escritorio -->
+    <!-- Menu para escritorio -->
     <div id="menu" class="hidden lg:flex lg:items-center space-x-6">
       <a
         href="index.html#products-section"
@@ -43,7 +43,7 @@
         >Promociones</a
       >
 
-      <!-- Botón del carrito -->
+      <!-- Boton del carrito -->
       <button
         id="cart-button"
         class="relative flex items-center text-gray-600 hover:text-black focus:outline-none"
@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <!-- Menú para móviles -->
+  <!-- Menu mobile -->
   <div
     id="mobile-menu"
     class="hidden lg:hidden bg-gray-100 px-4 pb-4 space-y-2 transition-all duration-300 ease-in-out"
@@ -90,24 +90,24 @@
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    // Abrir/cerrar menú móvil al hacer clic en el botón de menú
+    // Abrir/cerrar menu mobile al hacer clic en el boton de menu
     menuToggle.addEventListener("click", (e) => {
       e.stopPropagation(); // Prevenir el cierre inmediato al hacer clic
       mobileMenu.classList.toggle("hidden"); // Alternar visibilidad del menú
     });
 
-    // Cerrar menú móvil si se hace clic fuera
+    // Cerrar menu mobile si se hace clic fuera
     document.addEventListener("click", (event) => {
       if (
         !mobileMenu.contains(event.target) &&
         !menuToggle.contains(event.target) &&
-        !mobileMenu.classList.contains("hidden") // Solo cerrar si está visible
+        !mobileMenu.classList.contains("hidden") // Solo cerrar si esta visible
       ) {
         mobileMenu.classList.add("hidden");
       }
     });
 
-    // Cerrar menú móvil al hacer clic en un enlace dentro del menú
+    // Cerrar menu mobile al hacer clic en un enlace dentro del menu
     mobileMenu.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         mobileMenu.classList.add("hidden"); // Cerrar menú

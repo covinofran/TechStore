@@ -30,7 +30,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 400px; /* Fija la altura para centrar verticalmente */
+        height: 400px;
       }
       .related-product-card img {
         max-height: 180px;
@@ -57,23 +57,24 @@
                 src="assets/images/default-placeholder.png"
                 alt="Imagen del Producto"
                 class="img-fluid rounded-lg"
-                style="max-height: 100%; max-width: 100%;"
+                style="max-height: 100%; max-width: 100%"
               />
             </div>
           </div>
-          <!-- Información del Producto -->
+          <!-- Informacion del Producto -->
           <div class="col-md-6">
-            <h1 id="product-title" class="text-4xl font-bold text-gray-900 mb-3">
+            <h1
+              id="product-title"
+              class="text-4xl font-bold text-gray-900 mb-3"
+            >
               Nombre del Producto
             </h1>
-            <p
-              id="product-description"
-              class="text-lg text-gray-600 mb-4"
-            >
+            <p id="product-description" class="text-lg text-gray-600 mb-4">
               Aquí irá la descripción del producto.
             </p>
             <p class="h4 text-gray-800 fw-bold mb-4">
-              Precio: <span id="product-price" class="h3 text-black">$0.00</span>
+              Precio:
+              <span id="product-price" class="h3 text-black">$0.00</span>
             </p>
             <button
               id="add-to-cart-btn"
@@ -139,7 +140,12 @@
           document
             .getElementById("add-to-cart-btn")
             .addEventListener("click", () =>
-              addToCart(product.id, product.title, product.price, product.thumbnail)
+              addToCart(
+                product.id,
+                product.title,
+                product.price,
+                product.thumbnail
+              )
             );
         } catch (error) {
           console.error("Error al cargar los detalles del producto:", error);
